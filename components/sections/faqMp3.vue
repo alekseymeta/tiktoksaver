@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="mt-10">
     <div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
       <input type="checkbox" class="peer" />
       <h4 class="collapse-title peer-checked:bg-secondary peer-checked:text-secondary-content">

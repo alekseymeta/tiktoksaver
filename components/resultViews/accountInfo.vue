@@ -5,7 +5,7 @@
         <a :href="result.avatar_larger" target="_blank" class="stat-figure text-secondary relative flex flex-col items-center">
           <div class="avatar online">
             <div class="w-16 rounded-full">
-              <img :src="result.author_avatar"/>
+              <img :src="result.author_avatar" alt=""/>
             </div>
           </div>
           <div class="text-2xs text-center opacity-50 w-min">{{ $t('result.save_photo') }}</div>
@@ -22,7 +22,7 @@
           <i class='bx bx-heart text-3xl'></i>
         </div>
         <div class="stat-title text-sm">{{ $t('result.total_likes') }}</div>
-        <div class="stat-value text-primary">{{ counter(result.heartCount) }}</div>
+        <div class="stat-value text-primary">{{ result.heartCount | toFix }}</div>
         <div class="stat-desc">
           <a :href="result.link" target="_blank" class="link link-secondary link-hover">{{ $t('result.original_profile') }} ↗</a>
         </div>
@@ -35,7 +35,7 @@
           <i class='bx bx-face sm:text-3xl text-xl'></i>
         </div>
         <div class="stat-title sm:text-sm text-xs">{{ $t('result.followers') }}</div>
-        <div class="stat-value text-secondary sm:text-4xl text-lg">{{ counter(result.followerCount) }}</div>
+        <div class="stat-value text-secondary sm:text-4xl text-lg">{{ result.followerCount | toFix }}</div>
         <div class="stat-desc opacity-20">↗</div>
       </div>
 
@@ -44,7 +44,7 @@
           <i class='bx bxs-face sm:text-3xl text-xl'></i>
         </div>
         <div class="stat-title sm:text-sm text-xs">{{ $t('result.following') }}</div>
-        <div class="stat-value text-secondary sm:text-4xl text-lg">{{ counter(result.followingCount) }}</div>
+        <div class="stat-value text-secondary sm:text-4xl text-lg">{{ result.followingCount | toFix }}</div>
         <div class="stat-desc opacity-20">↗</div>
 
       </div>
@@ -54,7 +54,7 @@
           <i class='bx bx-camera-movie sm:text-3xl text-xl'></i>
         </div>
         <div class="stat-title sm:text-sm text-xs">{{ $t('result.videos') }}</div>
-        <div class="stat-value text-secondary sm:text-4xl text-lg">{{ counter(result.videoCount) }}</div>
+        <div class="stat-value text-secondary sm:text-4xl text-lg">{{ result.videoCount | toFix }}</div>
         <div class="stat-desc opacity-20">↗</div>
 
       </div>
@@ -64,30 +64,15 @@
 </template>
 
 <script>
+import toFix from "~/filters/toFix";
+
 export default {
   name: "accountInfo",
   props: {
     result: Object
   },
-  methods: {
-    counter(v) {
-      const n = String(v).split('')
-      if (n.length === 7) {
-        return `${n.slice(0, 2).join('.')}M`
-      } else if (n.length === 8) {
-        return `${n.slice(0, 2).join('')}.${n[2]}M`
-      } else if (n.length === 9) {
-        return `${n.slice(0, 3).join('')}.${n[3]}M`
-      } else if (n.length === 6) {
-        return `${n.slice(0, 3).join('')}.${n[3]}K`
-      } else if (n.length === 5) {
-        return `${n.slice(0, 2).join('')}.${n[2]}K`
-      } else if (n.length === 4) {
-        return `${n.slice(0, 2).join('.')}K`
-      } else {
-        return v
-      }
-    }
+  filters: {
+    toFix
   }
 }
 </script>
@@ -104,10 +89,6 @@ export default {
     display: flex;
   }
 
-}
-
-.text-mini {
-  font-size: 10px;
 }
 
 .dot {

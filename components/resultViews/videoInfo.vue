@@ -20,29 +20,29 @@
 
       <div class="stat">
         <div class="stat-title">{{ $t('result.likes') }}</div>
-        <div class="stat-value">{{ counter(result.like_count) }}</div>
+        <div class="stat-value">{{ result.like_count | toFix }}</div>
       </div>
 
       <div class="stat">
         <div class="stat-title">{{ $t('result.comments') }}</div>
-        <div class="stat-value">{{ counter(result.comment_count) }}</div>
+        <div class="stat-value">{{ result.comment_count | toFix }}</div>
       </div>
 
       <div class="stat">
         <div class="stat-title">{{ $t('result.downloads') }}</div>
-        <div class="stat-value">{{ counter(result.downloads_count) }}</div>
+        <div class="stat-value">{{ result.downloads_count | toFix }}</div>
         <a type="button" download :href="'https://www.tiktoksaver.online/tik/dl.php?url='+result.video+'&name='+result.unique_id + '.mp4'" class="btn btn-primary btn-sm mt-2">{{ $t('home.btn') }}</a>
       </div>
 
       <div class="stat">
         <div class="stat-title">{{ $t('result.plays') }}</div>
-        <div class="stat-value">{{ counter(result.play_count) }}</div>
+        <div class="stat-value">{{ result.play_count | toFix }}</div>
       </div>
 
       <div class="stat">
         <div class="stat-title">{{ $t('result.share') }}</div>
-        <div class="stat-value">{{ counter(result.share_count) }}</div>
-        <div class="stat-desc">WhatsApp: {{ counter(result.whatsapp_share_count) }}</div>
+        <div class="stat-value">{{ result.share_count | toFix }}</div>
+        <div class="stat-desc">WhatsApp: {{ result.whatsapp_share_count | toFix }}</div>
       </div>
 
     </div>
@@ -51,36 +51,15 @@
 </template>
 
 <script>
+import toFix from "~/filters/toFix";
+
 export default {
   name: "videoInfo",
   props: {
     result: Object
   },
-  methods: {
-    counter(v) {
-      const n = String(v).split('')
-      if ( n.length === 7 ){
-        return `${n.slice(0, 2).join('.')}M`
-      }
-      else if ( n.length === 8 ){
-        return `${n.slice(0, 2).join('')}.${n[2]}M`
-      }
-      else if ( n.length === 9 ){
-        return `${n.slice(0, 3).join('')}.${n[3]}M`
-      }
-      else if ( n.length === 6 ){
-        return `${n.slice(0, 3).join('')}.${n[3]}K`
-      }
-      else if ( n.length === 5 ){
-        return `${n.slice(0, 2).join('')}.${n[2]}K`
-      }
-      else if ( n.length === 4 ){
-        return `${n.slice(0, 2).join('.')}K`
-      }
-      else {
-        return v
-      }
-    }
+  filters: {
+    toFix
   }
 }
 </script>

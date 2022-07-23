@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="mt-10">
     <div class="w-full flex flex-col gap-3">
       <div class="flex flex-col bg-base-300 p-4 rounded-box text-left">
         <div class="flex flex-row items-center mb-4">
@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: "nStepsMp3"
+  name: "stepsMp3"
 }
 </script>
 

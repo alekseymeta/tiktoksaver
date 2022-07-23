@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "nSection2"
+  name: "mainHeader"
 }
 </script>
 

@@ -1,6 +1,5 @@
 <template>
-  <section class="flex flex-col items-center">
-    <!--      <h3 class="font-bold text-lg">Как скачать видео с Tiktok?</h3>-->
+  <section class="flex flex-col items-center mt-5">
     <p class="mt-5">
       <span class="opacity-75">{{ $t('home.title') }}</span>
       <span class="opacity-50"> - {{ $t('mp3.home.desc') }}</span>
@@ -11,7 +10,7 @@
 
 <script>
 export default {
-  name: "nSectionMp3"
+  name: "mainHeaderMp3.vue"
 }
 </script>
 
