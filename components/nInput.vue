@@ -1,7 +1,6 @@
 <template>
   <div class="form-control w-full">
     <div class="input-group w-full flex-col sm:flex-row gap-4 sm:gap-0">
-<!--      <span class="label-text bg-primary text-base-100 font-base"><i class='bx bxl-tiktok'></i></span>-->
       <input v-model="val" type="text"
              :class="{'input-error' : $v.val.$dirty && $v.val.$invalid}"
              @keypress.enter="sub"
@@ -44,12 +43,8 @@ export default {
       this.$v.val.$touch();
       if (this.$v.$error) {
         this.$v.$touch()
-        // console.log(this.$v.val)
         return
       }
-
-      // console.log(this.val)
-
       if (this.val.indexOf('tiktok.com') !== -1) {
         this.err = false
         const q = this.val.split('?')
@@ -63,9 +58,6 @@ export default {
       } else {
         this.err = true
       }
-
-
-      // this.$emit('download', this.val)
     }
   },
   validations: {
